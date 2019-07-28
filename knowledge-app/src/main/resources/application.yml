@@ -1,0 +1,58 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://146.12.3.54:27017/shenz3
+  mvc:
+      view:
+          prefix: /WEB-INF/views/
+          suffix: .jsp
+  cache:
+    type: ehcache
+    ehcache:
+      config:  classpath:ehcache.xml
+  profiles:
+    active: dev
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://146.12.2.187:3306/td?useUnicode=true&characterEncoding=utf-8
+    username: admin
+    password: CA1A8FC1C675AC97
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    useGlobalDataSourceStat: true
+td:
+  storePath:
+   template: /home/taiji/td/data/template
+
+mybatis:
+    type-aliases-package: cn.com.taiji.bean
+    mapper-locations: classpath:mapper/*/*.xml
+    configuration:
+      mapUnderscoreToCamelCase: true
+
+mapper:
+    mappers: cn.com.taiji.util.BaseMapper
+    not-empty: false
+    identity: MYSQL
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+logging:
+  level:
+   root: debug
